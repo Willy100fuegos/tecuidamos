@@ -1,0 +1,25 @@
+# Secretos y credenciales de despliegue
+.vscode/
+*.code-workspace
+*.winscp
+deploy_secrets.local
+.env*
+!.env.example
+*.key
+*.pem
+*.sql
+
+# Logs y trazas de ejecución
+*.log
+upload.log
+winscp_sync.log
+php_errors.log
+
+# Documentación interna / contexto local
+contexto/
+contexto*.md
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

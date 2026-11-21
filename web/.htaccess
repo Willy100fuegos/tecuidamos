@@ -1,0 +1,24 @@
+# ====================================================================
+# Gorat Protect - .htaccess Limpio
+# ====================================================================
+
+# Desactivar listado de directorios (evita ver archivos de carpetas sin index)
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /
+
+# 1. Permitir acceso directo a archivos y carpetas reales (C4, reportes, php, etc.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 2. Direccionamiento estético: ocultar extensión .html (Opcional pero recomendado)
+# Ejemplo: tecuidamos.mx/nosotros -> tecuidamos.mx/nosotros.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+# 3. Forzar HTTPS (Recomendado para tecuidamos.mx)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
